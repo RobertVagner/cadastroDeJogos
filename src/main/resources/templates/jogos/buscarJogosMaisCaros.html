@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Jogos Mais Caros</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 20px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        p {
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Jogos Mais Caros</h2>
+
+<form action="/jogos/buscarJogosMaisCaros" method="get">
+    <label for="preco">Valor Mínimo:</label>
+    <input type="text" id="preco" name="preco" required>
+    <button type="submit">Buscar</button>
+</form>
+
+<div th:if="${not #lists.isEmpty(jogosMaisCaros)}">
+    <h3>Jogos Encontrados:</h3>
+    <ul th:each="jogo : ${jogosMaisCaros}">
+        <li th:text="${jogo.nome + ' - ' + jogo.descricao + ' - ' + jogo.preco}"></li>
+    </ul>
+</div>
+
+<div th:if="${#lists.isEmpty(jogosMaisCaros)}">
+    <p>Nenhum jogo encontrado com preço superior ao valor informado.</p>
+</div>
+
+</body>
+</html>

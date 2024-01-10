@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://thymeleaf.org "
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template.html}">>
+<head>
+    <title>Lista de Usuários</title>
+</head>
+<body>
+<div layout:fragment="conteudo">
+    <h1>Lista de Usuários - Steam</h1>
+    <form action="/usuario/dados">
+        <input type="submit" value="Cadastrar Usuário">
+    </form>
+    <table>
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Senha</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="usuario : ${lista}">
+                <td th:text="${usuario.username}"></td>
+                <td th:text="${usuario.cpf}"></td>
+                <td th:text="${usuario.senha}"></td>
+                <td>
+                    <form action="/usuario/dados" method="get">
+                        <input type="hidden" name="idusuario" th:value="${usuario.idusuario}">
+                        <input type="submit" value="Editar">
+                    </form>
+                    <form action="/usuario" method="post">
+                        <input type="hidden" name="_method" value="delete">
+                        <input type="hidden" name="idusuario" th:value="${usuario.idusuario}">
+                        <input type="submit" value="Excluir">
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div style="display: flex; justify-content:center;">
+        <a href="/usuario/dados">Novo</a>
+        <a href="/menus/principal">Menu Principal</a>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Compras</title>
+</head>
+<body>
+<div layout:fragment="conteudo">
+<h1>Cadastro de Compras - Steam</h1>
+    <a href="/compra/listagem">Listagem</a>
+<form method="post" action="/compra">
+    <input type="hidden" name="_method" value="put" th:if="${compra!=null}">
+    <input type="hidden" name="idcompra" th:value="${compra?.idcompra}">
+
+    <div>
+        <label for="dataCompra">Data da Compra:</label>
+        <input id="dataCompra" name="dataCompra" th:value="${compra?.dataCompra}">
+    </div>
+
+    <div>
+        <label for="usuario">Usuário:</label>
+        <select id="usuario" name="usuario">
+            <option value=""> Selecione um Usuário </option>
+            <th:block th:each="gen:${listaUsuario}">
+                <option th:value="${gen.idusuario}"
+                        th:text="${gen.username}">
+                </option>
+            </th:block>
+        </select>
+    </div>
+
+    <div>
+        <label for="jogo">Jogo:</label>
+        <select id="jogo" name="jogo">
+            <option value=""> Selecione um Jogo </option>
+            <th:block th:each="gen:${listaJogo}">
+                <option th:value="${gen.id}"
+                        th:text="${gen.nome}">
+                </option>
+            </th:block>
+        </select>
+    </div>
+
+    <div style="display: flex; justify-content:center;">
+        <input type="submit" value="Cadastrar">
+        <a href="/menus/principal">Menu Principal</a>
+    </div>
+</form>
+</div>
+</body>
+</html>

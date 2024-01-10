@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Usuário</title>
+</head>
+<body>
+<div layout:fragment="conteudo">
+<h1>Cadastro de Usuário - Steam</h1>
+    <a href="/usuario/listagem">Listagem</a>
+<form method="post" action="/usuario">
+    <input type="hidden" name="_method" value="put" th:if="${usuario!=null}">
+    <input type="hidden" name="idusuario" th:value="${usuario?.idusuario}">
+
+    <div>
+        <label for="username">Nome do Usuário:</label>
+        <input id="username" name="username" th:value="${usuario?.username}">
+    </div>
+
+    <div>
+        <label for="cpf">CPF:</label>
+        <input id="cpf" name="cpf" th:value="${usuario?.cpf}">
+    </div>
+
+    <div>
+        <label for="senha">Senha:</label>
+        <input id="senha" name="senha" th:value="${usuario?.senha}">
+    </div>
+
+    <div style="display: flex; justify-content:center;">
+        <input type="submit" value="Cadastrar">
+        <a href="/menus/principal">Menu Principal</a>
+    </div>
+</form>
+</div>
+</body>
+</html>

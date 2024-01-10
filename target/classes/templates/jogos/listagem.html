@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://thymeleaf.org "
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template.html}">>
+<head>
+    <title>Lista de Jogos</title>
+</head>
+<body>
+<div layout:fragment="conteudo">
+    <h1>Lista de Jogos - Steam</h1>
+    <form action="/jogos/dados">
+        <input type="submit" value="Cadastrar Jogo">
+    </form>
+    <table>
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Preço</th>
+            <th>Genero</th>
+            <th>Empresa</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="jogo : ${lista}">
+                <td th:text="${jogo.nome}"></td>
+                <td th:text="${jogo.descricao}"></td>
+                <td th:text="${jogo.preco}"></td>
+                <td th:text="${jogo.genero.nomeGenero}"></td>
+                <td th:text="${jogo.empresa.nomeEmpresa}"></td>
+                <td>
+                    <form action="/jogos/dados" method="get">
+                        <input type="hidden" name="id" th:value="${jogo.id}">
+                        <input type="submit" value="Editar">
+                    </form>
+                    <form action="/jogos" method="post">
+                        <input type="hidden" name="_method" value="delete">
+                        <input type="hidden" name="id" th:value="${jogo.id}">
+                        <input type="submit" value="Excluir">
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div style="display: flex; justify-content:center;">
+        <a href="/jogos/dados">Novo</a>
+        <a href="/menus/principal">Menu Principal</a>
+    </div>
+</div>
+</body>
+</html>

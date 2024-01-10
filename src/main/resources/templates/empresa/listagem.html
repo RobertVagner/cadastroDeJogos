@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://thymeleaf.org "
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template.html}">>
+<head>
+    <title>Lista de Empresas</title>
+</head>
+<body>
+<div layout:fragment="conteudo">
+    <h1>Lista de Empresas - Steam</h1>
+    <form action="/empresa/dadosEmpresa">
+        <input type="submit" value="Cadastrar Empresa">
+    </form>
+    <table>
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="empresa : ${lista}">
+                <td th:text="${empresa.nomeEmpresa}"></td>
+                <td>
+                    <form action="/empresa/dadosEmpresa" method="get">
+                        <input type="hidden" name="idempresa" th:value="${empresa.idempresa}">
+                        <input type="submit" value="Editar">
+                    </form>
+                    <form action="/empresa" method="post">
+                        <input type="hidden" name="_method" value="delete">
+                        <input type="hidden" name="idempresa" th:value="${empresa.idempresa}">
+                        <input type="submit" value="Excluir">
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div style="display: flex; justify-content:center;">
+        <a href="/empresa/dadosEmpresa">Novo</a>
+        <a href="/menus/principal">Menu Principal</a>
+    </div>
+</div>
+</body>
+</html>

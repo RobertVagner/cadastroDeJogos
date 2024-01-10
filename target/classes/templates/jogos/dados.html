@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Jogo</title>
+</head>
+<body>
+<div layout:fragment="conteudo">
+<h1>Cadastro de Jogos - Steam</h1>
+    <a href="/jogos/listagem">Listagem</a>
+<form method="post" action="/jogos">
+    <input type="hidden" name="_method" value="put" th:if="${jogo!=null}">
+    <input type="hidden" name="id" th:value="${jogo?.id}">
+
+    <div>
+        <label for="nome">Nome do jogo:</label>
+        <input id="nome" name="nome" th:value="${jogo?.nome}">
+    </div>
+
+    <div>
+        <label for="descricao">Descrição:</label>
+        <input id="descricao" name="descricao" th:value="${jogo?.descricao}">
+    </div>
+
+    <div>
+        <label for="preco">Preço:</label>
+        <input id="preco" name="preco" th:value="${jogo?.preco}">
+    </div>
+
+    <div>
+        <label for="genero">Gênero:</label>
+        <select id="genero" name="genero">
+            <option value=""> Selecione um gênero </option>
+            <th:block th:each="gen:${listaGenero}">
+                <option th:value="${gen.idgenero}"
+                        th:text="${gen.nomeGenero}">
+                </option>
+            </th:block>
+        </select>
+    </div>
+
+    <div>
+        <label for="empresa">Empresa:</label>
+        <select id="empresa" name="empresa">
+            <option value=""> Selecione uma empresa </option>
+            <th:block th:each="gen:${listaEmpresa}">
+                <option th:value="${gen.idempresa}"
+                        th:text="${gen.nomeEmpresa}">
+                </option>
+            </th:block>
+        </select>
+    </div>
+
+    <div style="display: flex; justify-content:center;">
+        <input type="submit" value="Cadastrar">
+        <a href="/menus/principal">Menu Principal</a>
+    </div>
+</form>
+</div>
+</body>
+</html>

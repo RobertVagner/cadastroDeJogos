@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://thymeleaf.org "
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template.html}">>
+<head>
+    <title>Lista de Compras</title>
+</head>
+<body>
+<div layout:fragment="conteudo">
+    <h1>Lista de Compras - Steam</h1>
+    <form action="/compra/dados">
+        <input type="submit" value="Cadastrar Compra">
+    </form>
+    <table>
+        <thead>
+        <tr>
+            <th>Data</th>
+            <th>Usuário</th>
+            <th>Jogo</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbory>
+            <tr th:each="compra : ${lista}">
+                <td th:text="${compra.dataCompra}"></td>
+                <td th:text="${compra.usuario.username}"></td>
+                <td th:text="${compra.jogo.nome}"></td>
+                <td>
+                    <form action="/compra" method="post">
+                        <input type="hidden" name="_method" value="delete">
+                        <input type="hidden" name="idcompra" th:value="${compra.idcompra}">
+                        <input type="submit" value="Excluir">
+                    </form>
+                </td>
+            </tr>
+        </tbory>
+    </table>
+    <div style="display: flex; justify-content:center;">
+        <a href="/compra/dados">Novo</a>
+        <a href="/menus/principal">Menu Principal</a>
+    </div>
+</div>
+</body>
+</html>

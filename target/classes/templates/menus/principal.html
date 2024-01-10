@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template.html}">
+<head>
+    <title>Menu Principal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+            padding: 10px;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+            margin: 5px;
+            display: inline-block;
+        }
+
+        a:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .menu-link {
+            margin-bottom: 20px;
+        }
+
+        /* Estilização específica para as divs dos links */
+        div {
+            display: inline-block;
+            vertical-align: top;
+            margin: 10px;
+            padding: 15px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<div layout:fragment="conteudo">
+    <h1>Steam</h1>
+    <div>
+        <br><br><br>
+        <a href="/generos/formulario" class="menu-link">Cadastrar Gênero</a>
+        <br><br><br>
+        <a href="/generos/listagem" class="menu-link">Listar Gênero</a>
+        <br><br><br>
+        <a href="/generos/buscarPorGenero" class="menu-link">Buscar Gênero</a>
+    </div>
+    <div>
+        <br><br><br>
+        <a href="/jogos/dados" class="menu-link">Cadastrar Jogo</a>
+        <br><br><br>
+        <a href="/jogos/listagem" class="menu-link">Listar Jogo</a>
+        <br><br><br>
+        <a href="/jogos/buscarJogosMaisCaros" class="menu-link">Listar Jogo por Preço</a>
+        <br><br><br>
+        <a href="/jogos/buscarPorNome" class="menu-link">Buscar Jogo por Nome</a>
+    </div>
+    <div>
+        <br><br><br>
+        <a href="/empresa/dadosEmpresa" class="menu-link">Cadastrar Empresa</a>
+        <br><br><br>
+        <a href="/empresa/listagem" class="menu-link">Listar Empresa</a>
+        <br><br><br>
+        <a href="/empresa/buscarPorNome" class="menu-link">Buscar Empresa</a>
+    </div>
+    <div>
+        <br><br><br>
+        <a href="/usuario/dados" class="menu-link">Cadastrar Usuário</a>
+        <br><br><br>
+        <a href="/usuario/listagem" class="menu-link">Listar Usuário</a>
+        <br><br><br>
+        <a href="/usuario/buscarPorCpf" class="menu-link">Buscar Usuário por CPF</a>
+    </div>
+    <div>
+        <br><br><br>
+        <a href="/compra/dados" class="menu-link">Cadastrar Compra</a>
+        <br><br><br>
+        <a href="/compra/listagem" class="menu-link">Listar Compras</a>
+    </div>
+</div>
+</body>
+</html>

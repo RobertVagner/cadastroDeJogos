@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://thymeleaf.org "
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template.html}">>
+<head>
+    <title>Lista de Gênero</title>
+</head>
+<body>
+<div layout:fragment="conteudo">
+<h1>Lista de Gênero - Steam</h1>
+    <form action="/generos/formulario">
+        <input type="submit" value="Cadastrar Gênero">
+    </form>
+<table>
+    <thead>
+    <tr>
+        <th>Nome Gênero</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr th:each="genero : ${lista}">
+            <td th:text="${genero.nomeGenero}"></td>
+            <td>
+                <form action="/generos/formulario" method="get">
+                    <input type="hidden" name="idgenero" th:value="${genero.idgenero}">
+                    <input type="submit" value="Editar">
+                </form>
+                <form action="/generos" method="post">
+                    <input type="hidden" name="_method" value="delete">
+                    <input type="hidden" name="idgenero" th:value="${genero.idgenero}">
+                    <input type="submit" value="Excluir">
+                </form>
+            </td>
+        </tr>
+    </tbody>
+</table>
+    <div style="display: flex; justify-content:center;">
+        <a href="/generos/formulario">Novo</a>
+        <a href="/menus/principal">Menu Principal</a>
+    </div>
+</div>
+</body>
+</html>
